@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Auth\LoginController;
@@ -38,3 +39,7 @@ Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.in
 Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
+
+//Likes a las fotos
+
+Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');

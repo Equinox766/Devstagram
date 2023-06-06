@@ -57,13 +57,16 @@
         </header>
 
         <main class="container mx-auto mt-10">
+{{--        <main class="container mx-auto mt-10 my-24">--}}
             <h2 class="font-black text-center text-3xl mb-10">
                 @yield('titulo')
             </h2>
             @yield('content')
         </main>
 
-        <footer class=" mt-10 text-center p-5 text-gray-500 font-bold uppercase">
+{{--        <footer class="bottom-0 mt-10 text-center p-5 text-gray-500 font-bold fixed w-full h-17 uppercase bg-gray-900">--}}
+            <footer class=" mt-10 text-center p-5 text-gray-500 font-bold uppercase w-full">
+
             Devstagram - Todos los derechos reservados {{ now()->year }}
         </footer>
     </body>

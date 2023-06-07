@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\User\FollowerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Post\LikeController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Post\ImagenController;
 use App\Http\Controllers\User\PerfilController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\FollowerController;
 use App\Http\Controllers\Post\ComentarioController;
 
 /*
@@ -22,9 +23,8 @@ use App\Http\Controllers\Post\ComentarioController;
 |
 */
 
-Route::get('/', function () {
-    return view('principal');
-})->name('principal');
+Route::get('/', HomeController::class)->name('home.index');
+
 // REGISTRO DEL USUARIO
 Route::get('/crear-cuenta', [RegisterController::class, 'index'])->name('register');
 Route::post('/crear-cuenta', [RegisterController::class, 'store']);

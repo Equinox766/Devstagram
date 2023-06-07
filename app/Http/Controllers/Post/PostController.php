@@ -20,7 +20,7 @@ class PostController extends Controller
     }
     public function index(User $user): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $post = Post::where('user_id', $user->id)->paginate(20);
+        $post = Post::where('user_id', $user->id)->latest()->paginate(20);
 
         return view('dashboard', [
             'user' => $user,

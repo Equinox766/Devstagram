@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 
 class ImagenController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $imagen = $request->file('file');
         $nombreImagen = Str::uuid(). "." . $imagen->extension();

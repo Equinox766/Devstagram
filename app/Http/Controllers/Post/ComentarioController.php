@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
-use App\Models\Comentario;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comentario;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 
 class ComentarioController extends Controller
 {
-    public function store(Request $request, User $user, Post $post)
+    public function store(Request $request, User $user, Post $post): RedirectResponse
     {
         $this->validate($request, [
             'comentario' => 'required|max:255',

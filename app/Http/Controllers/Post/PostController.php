@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Foundation\Application;
 
 class PostController extends Controller
 {
@@ -14,7 +18,7 @@ class PostController extends Controller
     {
         $this->middleware('auth')->except(['show', 'index']);
     }
-    public function index(User $user)
+    public function index(User $user): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $post = Post::where('user_id', $user->id)->paginate(20);
 
@@ -24,12 +28,12 @@ class PostController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('posts.create');
     }
 
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): RedirectResponse
     {
         $this->validate($request,[
            'titulo'      =>  'required|max:255',
@@ -47,14 +51,14 @@ class PostController extends Controller
         return redirect()->route('posts.index', auth()->user()->username);
     }
 
-    public function show(User $user, Post $post)
+    public function show(User $user, Post $post): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('posts.show', [
             'post' => $post,
             'user' => $user
         ]);
     }
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         $this->authorize('delete', $post);
         $post->delete();

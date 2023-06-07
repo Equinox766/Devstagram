@@ -3,19 +3,23 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Foundation\Application;
 
 class RegisterController extends Controller
 {
-    function index()
+    function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request = $request->merge(['username' => Str::slug($request->username)]);
 
